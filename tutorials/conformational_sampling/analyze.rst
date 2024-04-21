@@ -4,6 +4,7 @@ Analyze Conformations
 First, necessary imports:
 
 .. ipython:: python
+   :verbatim:
 
    from prody import *
    from numpy import *
@@ -17,11 +18,13 @@ Parse conformations
 Now, let's read initial and refined conformations:
 
 .. ipython:: python
+   :verbatim:
 
    initial = AtomGroup('p38 initial')
    refined = AtomGroup('p38 refined')
 
 .. ipython:: python
+   :verbatim:
 
    for pdb in glob.glob('p38_ensemble/*pdb'):
        fn = os.path.splitext(os.path.split(pdb)[1])[0]
@@ -30,6 +33,7 @@ Now, let's read initial and refined conformations:
        parsePDB(opt, ag=refined)
 
 .. ipython:: python
+   :verbatim:
 
    initial
    refined
@@ -41,6 +45,7 @@ Calculate RMSD change
 We can plot RMSD change after refinement as follows:
 
 .. ipython:: python
+   :verbatim:
 
     rmsd_ca = []
     rmsd_all = []
@@ -70,6 +75,7 @@ To select a diverse set of refined conformations, let's calculate average RMSD
 for each conformation to all others:
 
 .. ipython:: python
+   :verbatim:
 
     rmsd_mean = []
     for i in range(refined.numCoordsets()):
@@ -86,6 +92,7 @@ for each conformation to all others:
 Let's select conformations that are 1.2 Å away from other on average:
 
 .. ipython:: python
+   :verbatim:
 
     selected = (array(rmsd_mean) >= 1.2).nonzero()[0]
     selected
