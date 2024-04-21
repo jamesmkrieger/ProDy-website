@@ -11,6 +11,7 @@ Configuration
 Let's find the location of NAMD executable:
 
 .. ipython:: python
+   :verbatim:
 
    from prody.utilities import which
    namd2 = which('namd2')
@@ -22,6 +23,7 @@ their location as follows:
 
 
 .. ipython:: python
+   :verbatim:
 
    tcl_cmd = '''package require readcharmmpar
    package require readcharmmtop
@@ -37,12 +39,14 @@ their location as follows:
 This can be run in vmd from ipython as below:
 
 .. ipython:: python
+   :verbatim:
 
    !vmd -dispdev text -e where_is_charmmpar.tcl
 
 We then read the output file to get the parameter directory:
 
 .. ipython:: python
+   :verbatim:
 
    inp = open('charmmdir.txt', 'r')
    lines = inp.readlines()
@@ -60,6 +64,7 @@ To configure this computer
 Let's make a folder for writing optimization input and output files:
 
 .. ipython:: python
+   :verbatim:
 
    mkdir -p p38_optimize
 
@@ -67,6 +72,7 @@ We will write an NAMD configuration file for each conformation based
 on :file:`min.conf`:
 
 .. ipython:: python
+   :verbatim:
 
    import glob
    conf = open('conformational_sampling_files/min.conf').read()
@@ -87,6 +93,7 @@ Now we will run NAMD to optimize each of these conformations. We make a list
 of commands that we want to execute:
 
 .. ipython:: python
+   :verbatim:
 
    os.chdir('p38_optimize')  # we will run commands in this folder
    cmds = []
@@ -100,6 +107,7 @@ We will run these commands using :mod:`multiprocessing` module.  We will
 allocate 3 processors for the job:
 
 .. ipython:: python
+   :verbatim:
 
    from multiprocessing import Pool
    pool = Pool(3) # number of CPUs to use
@@ -109,6 +117,7 @@ allocate 3 processors for the job:
 right, we should have only 0s.
 
 .. ipython:: python
+   :verbatim:
 
    set(signals)
 
@@ -116,6 +125,6 @@ All NAMD output should be in :file:`p38_optimize` folder.  We go back to
 origional folder as follows:
 
 .. ipython:: python
-
+   :verbatim:
 
    os.chdir('..')
